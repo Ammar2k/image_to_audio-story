@@ -1,7 +1,10 @@
 langchain
-langchain_community
+langchain-community
 torch
 fastapi
 uvicorn
 openai
 streamlit
+python-dotenv
+transformers
+requests

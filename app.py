@@ -1,7 +1,5 @@
 from dotenv import find_dotenv, load_dotenv
 import streamlit as st
-from PIL import Image
-from requests_toolbelt.multipart.encoder import MultipartEncoder
 import requests
 import os
 
@@ -9,17 +7,6 @@ import os
 load_dotenv(find_dotenv())
 HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
 backend = "http://127.0.0.1:8000/upload"
-
-
-def process(image, server_url: str):
-
-    m = MultipartEncoder(fields={"file": ("filename", image, "image/jpeg")})
-
-    r = requests.post(
-        server_url, data=m, headers={"Content-Type": m.content_type}, timeout=8000
-    )
-
-    return r
 
 
 def main():
@@ -35,7 +22,6 @@ def main():
         st.image(uploaded_file, caption="Uploaded Image.",
                  use_column_width=True)
 
-        # response = process(uploaded_file.name,, backend)
         files = {"file": ("filename.jpg", uploaded_file, "image/jpeg")}
         response = requests.post(backend, files=files)
         result = response.json()
