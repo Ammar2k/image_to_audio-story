@@ -1,3 +1,8 @@
 .env
 venv
 venv/
+.jpg
+images/
+.pyc
+.flac
+__pycache__/
